@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/materialize.min_rtl.css">
+    <link rel="stylesheet" href="css/custom_rtl.css">
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <title>نیوزگت - نسخه وب</title>
+    <style>
+        body {
+            background-color: #EEEEEE;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 2px;
+            display: block;
+            margin: 1rem;
+            position: relative;
+        }
+
+        .card-single-large {
+            background: #fff;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .card-shadow {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .card-shadow:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+
+        .hiddendiv {
+            white-space: inherit;
+            word-wrap: normal;
+        }
+    </style>
+    <style>
+        #single_content_body img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: auto;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        #single_content_body h1, h2, h3, h4, h5, h6, strong {
+            font-weight: bold;
+        }
+
+        #single_content_body h1, h2, h3, h4, h6 {
+            font-size: medium;
+        }
+
+        #single_content_body blockquote, #single_content_body .pullquote {
+            direction: rtl;
+            margin: 20px 0;
+            padding-right: 1.5rem;
+            border-right: 5px solid #3f51b5;
+        }
+
+        ul, li {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .collection .collection-item {
+            text-align: inherit;
+        }
+
+        #toast-container {
+            direction: rtl;
+        }
+
+        .loader {
+            position: relative;
+            margin: 0px auto;
+            width: 100px;
+            /*margin-top: -1.1em;*/
+        }
+        .loader:before {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+
+        .circular {
+            -webkit-animation: rotate 2s linear infinite;
+            animation: rotate 2s linear infinite;
+            height: 100%;
+            -webkit-transform-origin: center center;
+            transform-origin: center center;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .path {
+            stroke-dasharray: 1,200;
+            stroke-dashoffset: 0;
+            -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+            animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+            stroke-linecap: round;
+        }
+
+        @-webkit-keyframes rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes rotate {
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+        @-webkit-keyframes dash {
+            0% {
+                stroke-dasharray: 1,200;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dasharray: 89,200;
+                stroke-dashoffset: -35px;
+            }
+            100% {
+                stroke-dasharray: 89,200;
+                stroke-dashoffset: -124px;
+            }
+        }
+        @keyframes dash {
+            0% {
+                stroke-dasharray: 1,200;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dasharray: 89,200;
+                stroke-dashoffset: -35px;
+            }
+            100% {
+                stroke-dasharray: 89,200;
+                stroke-dashoffset: -124px;
+            }
+        }
+        @-webkit-keyframes color {
+            100%, 0% {
+                stroke: #d62d20;
+            }
+            40% {
+                stroke: #0057e7;
+            }
+            66% {
+                stroke: #008744;
+            }
+            80%, 90% {
+                stroke: #ffa700;
+            }
+        }
+        @keyframes color {
+            100%, 0% {
+                stroke: #d62d20;
+            }
+            40% {
+                stroke: #0057e7;
+            }
+            66% {
+                stroke: #008744;
+            }
+            80%, 90% {
+                stroke: #ffa700;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="indigo">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo logo-button"><img id="app-logo" src="img/ic_launcher_round.png"><span class="hide-on-med-and-down" style="vertical-align: top">&nbsp;&nbsp;&nbsp;نیوزگت - اخبار تکنولوژی و سرگرمی <small style="vertical-align: inherit">&nbsp;&nbsp;&nbsp;نسخه وب</small></span></a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse logo-button"><i class="mdi mdi-menu"></i></a>
+            <ul class="hide-on-med-and-down logo-button" style="margin-left: 115px">
+                <li><a href="http://newsget.in/contactus">تماس</a></li>
+                <li><a href="http://newsget.in"><i class="mdi mdi-android"></i>&nbsp;&nbsp;نسخه اندروید</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li style="background-color: #FFC107; height: 12.500em">
+                    <div style="padding-top: 2em; padding-right: 4.9em;">
+                        <img src="img/ic_launcher_round.png" height="120" />
+                    </div>
+                </li>
+                <li><i class="mdi mdi-help-circle"></i><a href="#whynewsget">چرا نیوزگت؟</a></li>
+                <li><i class="mdi mdi-download"></i><a href="/download">دانلود</a></li>
+                <li><i class="mdi mdi-email"></i><a href="/contactus">تماس</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="corner-ribbon top-left sticky red shadow hide-on-small-only">آزمایشی</div>
+<main>
+    <div class="container">
+        <div class="row">
+            <div id="right_content" class="col l3 m3 s12 center-align shared-bind">
+                <div id="right_content_loading" class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+                <section id="right_content_list">
+                    <ul class="collection with-header" style="border: 0">
+                        <li class="collection-header center-align">
+                            <div class="loader" style="width: 20%; height: 20%">
+                                <div id="right_content_beforeicon_loader" style="display: none">
+                                    <svg class="circular" viewBox="25 25 50 50">
+                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                    </svg>
+                                </div>
+                                <div id="right_content_icon">
+                                    <i class="mdi mdi-web mdi-48px"></i>
+                                </div>
+                            </div>
+                            <h5>سایت ها</h5>
+                            <div id="right_content_failed" style="display: none; border-top: 1px solid #e0e0e0;" class="failed-info">
+                                <div>
+                                    <p>بارگذاری شکست خورد</p>
+                                    <i class="mdi mdi-cloud-outline-off mdi-48px indigo-text"></i><br>
+                                    <a class="waves-effect waves-light btn amber" id="right_content_failed_button"><i class="mdi mdi-refresh" style="vertical-align: inherit"></i>&nbsp;دوباره</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li rv-each-provider="shared_data.providers_list" rv-on-click="controller.onProviderClick" class="collection-item waves-effect waves-block waves-light" style="cursor: pointer">
+                            <img rv-src="provider.logo" class="responsive-img center" />
+                            <p class="center-align" rv-text="provider.displayname" data-type="provider" rv-data-source="provider.name"></p>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div id="main_content" class="col l6 m6 s12 center-align shared-bind">
+                <div id="main_content_loading" class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+                <div id="main_content_failed" style="display: none" class="failed-info">
+                    <div>
+                        <p>بارگذاری شکست خورد</p>
+                        <i class="mdi mdi-cloud-outline-off mdi-48px indigo-text"></i><br>
+                        <a class="waves-effect waves-light btn amber" id="main_content_failed_button"><i class="mdi mdi-refresh" style="vertical-align: inherit"></i>&nbsp;دوباره</a>
+                    </div>
+                </div>
+                <section id="main_content_list">
+                    <div class="card-panel card" style="display: none" id="latest_articles_from_div">
+                        <h4 style="font-size: 1.2rem; line-height: inherit" id="latest_articles_from_text" rv-source-displayname="shared_data.latest_articles"></h4>
+                    </div>
+                    <ul>
+                        <li rv-each-article="shared_data.latest_articles">
+                            <div class="card-panel card card-shadow waves-effect waves-block waves-light" rv-on-click="controller.onArticleClick">
+                                <div>
+                                    <img class="responsive-img" style="min-width: 200px; border-radius: 2px" rv-src="article.thumbnail">
+                                </div>
+                                <div class="card-content">
+                                    <p style="font-size: large" rv-text="article.title"></p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <!--card-panel card-single-large card-shadow-->
+            <div id="single_content" class="col l6 m6 s12 hiddendiv">
+                <div id="action_menu" style="background-color: #3F51B5; height: 3.5em; box-shadow: 0 2px 5px 0 rgba(0,0,0,.16),0 2px 10px 0 rgba(0,0,0,.12); display: flex; justify-content: space-between;">
+                    <span style="margin: 0.5em">
+                        <span id="action_share" style="cursor: pointer"><i class="mdi mdi-share-variant white-text" style="font-size: 32px"></i></span>
+                    </span>
+                    <div>
+                        <h5 class="white-text" rv-text="current_article.source_displayname" style="font-weight: bold" dir="auto"></h5>
+                    </div>
+                    <span style="margin: 0.5em">
+                        <span id="action_back" style="cursor: pointer"><i class="mdi mdi-arrow-right mdi-36px white-text"></i></span>
+                    </span>
+                </div>
+                <div style="clear: both"></div>
+                <section id="single_content_body" style="padding: 2em; background-color: white; border-radius: 2px;">
+                    <h5 id="article-title" rv-text="current_article.title"></h5>
+                    <div id="article-body" rv-html="current_article.content"></div>
+                </section>
+            </div>
+            <div id="left_content" class="col l3 m3 s12 center-align shared-bind">
+                <div id="left_content_loading" class="progress">
+                    <div class="indeterminate"></div>
+                </div>
+                <section id="left_content_list">
+                    <ul class="collection with-header" style="border: 0">
+                        <li class="collection-header center-align">
+                            <div class="loader" style="width: 20%; height: 20%">
+                                <div id="left_content_beforeicon_loader" style="display: none">
+                                    <svg class="circular" viewBox="25 25 50 50">
+                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                    </svg>
+                                </div>
+                                <div id="left_content_icon">
+                                    <i class="mdi mdi-temperature-celsius mdi-48px"></i>
+                                </div>
+                            </div>
+                            <h5>داغ ترین مطالب</h5>
+                            <div id="left_content_failed" style="display: none; border-top: 1px solid #e0e0e0;" class="failed-info">
+                                <div>
+                                    <p>بارگذاری شکست خورد</p>
+                                    <i class="mdi mdi-cloud-outline-off mdi-48px indigo-text"></i><br>
+                                    <a class="waves-effect waves-light btn amber" id="left_content_failed_button"><i class="mdi mdi-refresh" style="vertical-align: inherit"></i>&nbsp;دوباره</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li rv-on-click="controller.onArticleClick" rv-each-hotarticle="shared_data.hot_articles" class="collection-item waves-effect waves-block waves-light" style="cursor: pointer">
+                            <p rv-text="hotarticle.title"></p>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="page-footer indigo">
+    <div class="container">
+        <div class="col l6 m6 s12 offset-l3 offset-m3">
+            <p class="white-text">
+                <i class="mdi mdi-shield-outline" style="vertical-align: middle"></i>&nbsp;2016 - 2015&nbsp;&nbsp; تمامی حقوق برای نیوزگت و NewsGet محفوظ است.
+                <br>
+                <i class="mdi mdi-information-outline" style="vertical-align: middle"></i>&nbsp;اپ نیوزگت و NewsGet مسئولیتی در قبال محتوای اخبار و مقالات سایت های ارائه دهنده ندارد.</p>
+            <br>
+            <div class="left-align" style="direction: ltr; color: white">
+                <p>Current Server: <span style="color: #FFC107" id="current_server"></span></p>
+            </div>
+            <br>
+        </div>
+    </div>
+</footer>
+<script src="js/jquery-2.2.1.min.js"></script>
+<script src="js/rivets-0.8.0.bundled.min.js"></script>
+<script src="js/arg-1.3.1.min.js"></script>
+<script src="js/jquery.history.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/clipboard.min.js"></script>
+<script about="shared_scripts">
+    $('document').ready(function () {
+
+        $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 240
+                    edge: 'right', // Choose the horizontal origin
+                    closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                }
+        );
+
+        loading_more = false;
+        txt_all_articles_from = 'همه ی مطالب از ';
+        txt_loading_failed = 'بارگذاری شکست خورد';
+        mainloader = $('#main_content_loading');
+        base_url = '/';
+
+        ltr_sources = ['Cnet', 'TheVerge_Entertainment', 'TheVerge_Tech', 'AttackoftheFanboy', 'PCgamer_Reviews', 'PCgamer_News'];
+
+        rivets.binders.src = function(el, value) {
+            el.src = value;
+        };
+
+        rivets.binders['data-*'] = function(el, value) {
+            el.setAttribute('data-' + this.args[0], value);
+        };
+
+        sourcedisplay_bind = rivets.binders['source-displayname'] = function(el, value) {
+            if(value[0] != undefined)
+            {
+                if(Arg('source') !== undefined)
+                {
+                    el.innerHTML = 'آخرین مطالب از <br>' + value[0].source_displayname;
+                }
+                else
+                {
+                    el.innerHTML = 'آخرین مطالب';
+                }
+            }
+        };
+
+        var shared_data = {
+            server1: 'http://newsget.in',
+            server2: 'http://newsget.vsgcdn.com',
+            default_server: null,
+            current_article : null,
+            hot_articles : [],
+            providers_list : [],
+            latest_articles : []
+        };
+        shared_data.default_server = shared_data.server1;
+
+        $('#current_server').text(shared_data.default_server)
+        .mouseover(function () {
+            $(this).text('Change Server').css('cursor', 'pointer');
+        }).mouseout(function () {
+            $(this).text(shared_data.default_server);
+        }).click(function () {
+            if(shared_data.default_server == shared_data.server1)
+            {
+                shared_data.default_server = shared_data.server2;
+            }
+            else
+            {
+                shared_data.default_server = shared_data.server1;
+            }
+        });
+
+        var browser_url = Arg('url');
+        var browser_source = Arg('source');
+        var browser_page = Arg('page');
+
+        $('#action_back').click(function () {
+            History.back();
+            // we should get source page but not url
+            var src = Arg('source');
+            var pag = Arg('page');
+            var url = Arg('url');
+
+            if(src !== undefined && pag !== undefined && url === undefined)
+            {
+                window.location = base_url + '?source=' + src + '&page=' + pag;
+            }
+            else
+            {
+                Materialize.toast(txt_loading_failed, 4000, 'rounded');
+            }
+        });
+
+        $('#action_share').click(function (){Materialize.toast('آدرس این صفحه در کلیپ بورد کپی شد.', 4000, 'rounded')});
+
+        var controller = {
+            onArticleClick: function (e, model)
+            {
+                toggleSideLoaderpIcon('left', 'show');
+                var selected_article = { hot_article: null, url: null, source: null };
+                if(model.hotarticle == undefined)
+                {
+                    selected_article.hot_article = false;
+                    selected_article.source = model.shared_data.latest_articles[model.index].source;
+                    selected_article.url = model.shared_data.latest_articles[model.index].url;
+                }
+                else
+                {
+                    selected_article.hot_article = true;
+                    selected_article.source = model.shared_data.hot_articles[model.index].source;
+                    selected_article.url = model.shared_data.hot_articles[model.index].url;
+                }
+                loadSingleArticle(shared_data, this, selected_article.source, selected_article.url);
+            },
+            onProviderClick: function (e, model)
+            {
+                toggleSideLoaderpIcon('right', 'show');
+//                loadProviderArticles(shared_data, this, model.provider.name, browser_page, model.provider.displayname);
+                window.location = base_url + "?source=" + model.provider.name;
+            }
+        };
+
+        $('.failed-info a').click(function () {
+            if($(this)[0].id == 'main_content_failed_button')
+            {
+                if(Arg('url') !== undefined)
+                {
+                    loadSingleArticle(shared_data, controller, Arg('source'), Arg('url'));
+                }
+                else if (Arg('provider') !== undefined)
+                {
+                    loadProviderArticles(shared_data, controller, Arg('source'), Arg('page'));
+                }
+                else
+                {
+                    loadMainSide(shared_data, controller, browser_page);
+                }
+            }
+            else if($(this)[0].id == 'left_content_failed_button')
+            {
+                loadLeftSide(shared_data, controller);
+            }
+            else if($(this)[0].id == 'right_content_failed_button')
+            {
+                loadRightSide(shared_data, controller);
+            }
+        });
+
+        if(browser_url != undefined)
+        {
+            loadSingleArticle(shared_data, controller, Arg('source'), browser_url);
+        }
+
+        loadRightSide(shared_data, controller);
+
+        loadLeftSide(shared_data, controller);
+
+
+        if(browser_page === undefined)
+        {
+            browser_page = 1;
+        }
+
+        if(browser_url === undefined)
+        {
+            if(browser_source === undefined)
+            {
+                loadMainSide(shared_data, controller, browser_page);
+            }
+            else
+            {
+                loadProviderArticles(shared_data, controller, browser_source, browser_page);
+            }
+        }
+
+        $('.shared-bind').each(function (i, value) {
+            var tmp = rivets.bind(
+                    value,
+                    {
+                        shared_data: shared_data,
+                        controller: controller
+                    }
+            );
+        });
+
+    });
+
+    function toggleSideLoaderpIcon(side, action)
+    {
+        if(action == 'show')
+        {
+            $('#' + side + '_content_icon').hide();
+            $('#' + side + '_content_beforeicon_loader').show();
+        }
+        else
+        {
+            $('#' + side + '_content_icon').show();
+            $('#' + side + '_content_beforeicon_loader').hide();
+        }
+    }
+
+    function loadRightSide(shared_data, controller)
+    {
+        // <editor-fold desc="Right Loader AJAX">
+
+        var rightloader = $('#right_content_loading');
+        var rightfailed = $('#right_content_failed');
+        rightfailed.hide();
+        rightloader.show();
+        $.ajax({
+                    type: 'GET', // define the type of HTTP verb we want to use
+                    url: shared_data.default_server + '/service/allmodulesdetailed', // the url where we want to make request to
+                    dataType: 'json', // what type of data do we expect back from the server
+                    timeout: 8000,
+                    crossDomain: true,
+                    async: true,
+                    encode: true
+                })
+
+                // ajax call succeeds
+                .done(function (data) {
+                    // foreach item in result, push it into main_contents.latest_articles array
+                    $.each(data, function(key, val)
+                    {
+                        shared_data.providers_list.push(val);
+                    });
+                    rightloader.hide();
+                })
+
+                // ajax call fails
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 200) {
+                        console.log('200, Fail');
+                    } else {
+                        console.log(jqXHR);
+                        console.log('AJAX Error');
+                    }
+                    rightloader.hide();
+                    rightfailed.show();
+                });
+
+        //</editor-fold>
+    }
+
+    function loadLeftSide(shared_data, controller)
+    {
+        // <editor-fold desc="Left Loader AJAX">
+
+        var leftloader = $('#left_content_loading');
+        var leftfailed = $('#left_content_failed');
+        leftfailed.hide();
+        leftloader.show();
+        $.ajax({
+                    type: 'GET', // define the type of HTTP verb we want to use
+                    url: shared_data.default_server + '/gettop', // the url where we want to make request to
+                    dataType: 'json', // what type of data do we expect back from the server
+                    timeout: 8000,
+                    crossDomain: true,
+                    async: true,
+                    encode: true
+                })
+
+                // ajax call succeeds
+                .done(function (data) {
+                    // foreach item in result, push it into main_contents.latest_articles array
+                    $.each(data, function(key, val)
+                    {
+                        shared_data.hot_articles.push(val);
+                    });
+                    leftloader.hide();
+                })
+
+                // ajax call fails
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 200) {
+                        console.log('200, Fail');
+                    } else {
+                        console.log(jqXHR);
+                        console.log('AJAX Error');
+                    }
+                    leftloader.hide();
+                    leftfailed.show();
+                });
+
+        // </editor-fold>
+    }
+
+    function loadMainSide(shared_data, controller, browser_page)
+    {
+        // <editor-fold desc="Main Loader AJAX">
+
+        var mainfailed = $('#main_content_failed');
+        mainfailed.hide();
+        mainloader.show();
+        $.ajax({
+                    type: 'GET', // define the type of HTTP verb we want to use
+                    url: shared_data.default_server + '/getlatest/1/' + browser_page, // the url where we want to make request to
+                    dataType: 'json', // what type of data do we expect back from the server
+//                    timeout: 10000,
+                    crossDomain: true,
+                    async: true,
+                    encode: true
+                })
+
+                // ajax call succeeds
+                .done(function (data) {
+                    // foreach item in result, push it into main_contents.latest_articles array
+                    $.each(data, function(key, val)
+                    {
+                        shared_data.latest_articles.push(val);
+                    });
+                    mainloader.hide();
+                    $('#latest_articles_from_div').show();
+                })
+
+                // ajax call fails
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 200) {
+                        console.log('200, Fail');
+                    } else {
+                        console.log(jqXHR);
+                        console.log('AJAX Error');
+                    }
+                    mainloader.hide();
+                    mainfailed.show();
+                });
+
+        // </editor-fold>
+    }
+
+    function loadSingleArticle(shared_data, controller, source, url)
+    {
+        // <editor-fold desc="Single Loader AJAX">
+
+        var singlefailed = $('#main_content_failed');
+        var mainpage = $('#main_content');
+        var singlepage = $('#single_content');
+        singlefailed.hide();
+        mainloader.show();
+        $.ajax({
+                    type: 'GET', // define the type of HTTP verb we want to use
+                    url: shared_data.default_server + '/getsingle/' + source + '/' + url + '/1',
+                    dataType: 'json',
+                    timeout: 8000,
+                    crossDomain: true,
+                    async: true,
+                    encode: true
+                })
+
+                // ajax call succeeds
+                .done(function (data) {
+                    shared_data.current_article = data[0];
+                    mainpage.hide();
+                    mainloader.hide();
+
+                    rivets.bind(
+                            $('#single_content'),
+                            {
+                                current_article: shared_data.current_article,
+                                controller: controller
+                            }
+                    );
+
+                    if($.inArray(shared_data.current_article.source, ltr_sources) !== -1)
+                    {
+                        // This is an english article
+                        $('#article-title').css('direction', 'ltr').css('text-align', 'left');
+                        $('#article-body').css('direction', 'ltr').css('text-align', 'left').css('font-family', 'sans-serif');
+                        $('#article-body').find('p').css('text-align', 'left').css('direction', 'ltr');
+                    }
+
+                    toggleSideLoaderpIcon('left', 'hide');
+
+                    // Change browser-URL and title
+                    History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+                        var State = History.getState(); // Note: We are using History.getState() instead of event.state
+                    });
+
+                    // Change our States
+                    History.pushState({state:1}, shared_data.current_article.title, "?source=" + source + "&url=" + shared_data.current_article.url);
+
+                    singlepage.show();
+                    $('#action_share').attr('data-clipboard-text', document.URL);
+                    new Clipboard('#action_share');
+                })
+
+                // ajax call fails
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 200) {
+                        console.log('200, Fail');
+                    } else {
+                        console.log(jqXHR);
+                        console.log('AJAX Error');
+                    }
+                    mainloader.hide();
+                    toggleSideLoaderpIcon('left', 'hide');
+                    Materialize.toast(txt_loading_failed, 4000, 'rounded');
+                    singlefailed.show();
+                });
+
+        // </editor-fold>
+    }
+
+    function loadProviderArticles(shared_data, controller, source, page, display_name)
+    {
+        // <editor-fold desc="Provider Article Loader AJAX">
+
+        var providersfailed = $('#main_content_failed');
+        providersfailed.hide();
+        mainloader.show();
+        $.ajax({
+                    type: 'GET', // define the type of HTTP verb we want to use
+                    url: shared_data.default_server + '/getall/' + source + '/1/' + page, // the url where we want to make request to
+                    dataType: 'json', // what type of data do we expect back from the server
+//                    timeout: 10000,
+                    crossDomain: true,
+                    async: true,
+                    encode: true
+                })
+
+                // ajax call succeeds
+                .done(function (data) {
+                    // foreach item in result, push it into main_contents.latest_articles array
+                    if(!loading_more)
+                    {
+                        shared_data.latest_articles.length = 0;
+                    }
+                    $.each(data, function(key, val)
+                    {
+                        shared_data.latest_articles.push(val);
+                    });
+                    mainloader.hide();
+
+                    // Change browser-URL and title
+                    History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+                        var State = History.getState(); // Note: We are using History.getState() instead of event.state
+                    });
+
+                    if(display_name !== undefined)
+                    {
+                        document.getElementById('latest_articles_from_text').innerHTML = 'آخرین مطالب از <br>' + ' ' + display_name;
+                    }
+
+                    if(Arg('url') === undefined)
+                    {
+                        $('#single_content').hide();
+                        $('#main_content').show();
+                    }
+
+                    $('#latest_articles_from_div').show();
+                    toggleSideLoaderpIcon('right', 'hide');
+
+                    // Change our States
+                    History.pushState({state:1}, $('#latest_articles_from_text').text(), "?source=" + source + "&page=" + page);
+                })
+
+                // ajax call fails
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status == 200) {
+                        console.log('200, Fail');
+                    } else {
+                        console.log(jqXHR);
+                        console.log('AJAX Error');
+                    }
+                    mainloader.hide();
+                    toggleSideLoaderpIcon('right', 'hide');
+                    Materialize.toast(txt_loading_failed, 4000, 'rounded');
+                    providersfailed.show();
+                });
+
+        // </editor-fold>
+    }
+</script>
+</body>
+</html>
+
+<!--
+ Bugs:
+ - main loader is not shown when user is already on a single article page
+ - when clicked on a provider, after a successful load, content is not changed
+ - when clicked on sides if failed no error is shown
+ -->
+<!--nb5h37b5f7xw35lhnfqx36z4mnxw5l6b4j5gsy6mmAxt2mbrgyxt1mzpg1zs9mjqfAsw34bfmfqskzby2vrdcjl2h2stqmjfmq7sk4bw2vsdqjlbmywskzby2vrdgjl2h1swcnzfmq7ckylg2vsdsjjyg7wskzbz2A7dqljfmrqskyjz2vsdqjlbg7sw34bfm3yskzby2vqtqjl2h1sw2mjfmq7ckylg2vsg2jjymmwskzby2vqtqjl2h1sw2mjfmq7ckyjx2vsg2jjymmwskzdb2vqtsjl2h1swcnzfmq7ckyrrfAsw34bfm27ckzby2vqt4ljfmrqskylg2vsdsjjyh1sw3yjfmftckzbz2A7d3ljfmrqskyjzf7-->
